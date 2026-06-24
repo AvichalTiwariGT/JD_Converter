@@ -4,12 +4,9 @@ import fitz
 from docx import Document
 from groq import Groq
 from dotenv import load_dotenv
-from docx.shared import Pt, RGBColor
-from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
-from docx.oxml.ns import qn
+from docx.shared import Pt
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 import json
-from docx.shared import Inches
 
 app = Flask(__name__)
 
@@ -69,8 +66,12 @@ def normalize_data(d):
 
 load_dotenv()
 
+# Initialize Groq client with API key from environment
+api_key = os.getenv("GROQ_API_KEY")
+if not api_key:
+    raise RuntimeError("GROQ_API_KEY not set. Please define it in .env file.")
 client = Groq(
-    api_key=os.getenv("GROQ_API_KEY")
+    api_key=api_key
 )
 
 def convert_jd_with_groq(text):
@@ -146,8 +147,9 @@ def create_deloitte_doc(data):
     p1 = hdr.paragraphs[0]
     p1.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
 
-    BASE_DIR = os.path.dirname(os.path.abspath("JD_converter"))
-
+    # Determine the directory of this file to locate assets reliably
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    
     logo_path = os.path.join(
         BASE_DIR,
         "assets",
@@ -304,8 +306,9 @@ def create_deloitte_doc(data):
                 style="List Bullet"
             )
     
+    # Use the configured output folder to ensure correct path
     output_file = os.path.join(
-            OUTPUT_FOLDER,
+            app.config["OUTPUT_FOLDER"],
             "Deloitte_JD.docx"
         )
     
@@ -318,8 +321,10 @@ def create_deloitte_doc(data):
 
 
 
-UPLOAD_FOLDER = "uploads"
-OUTPUT_FOLDER = "outputs"
+# Use absolute paths for upload and output directories based on the project root
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+OUTPUT_FOLDER = os.path.join(BASE_DIR, "outputs")
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
