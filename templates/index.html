@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deloitte JD Converter</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-card">
+
+        <h1 class="logo">
+            Deloitte<span>.</span>
+        </h1>
+
+        <h2>
+            Convert Client JD Into Deloitte Standard Format
+        </h2>
+
+        <p>
+            AI Powered JD Transformation Platform
+        </p>
+
+    </div>
+
+    <div class="greeting-card">
+
+        <h2 id="greeting"></h2>
+
+        <p id="quote"></p>
+
+    </div>
+
+    <div class="main-grid">
+
+        <div class="process-card">
+
+            <h3>Process Status</h3>
+
+            <div class="step" id="step1">
+                <span>📄</span>
+                <p>JD Uploaded</p>
+            </div>
+
+            <div class="step" id="step2">
+                <span>🔍</span>
+                <p>Text Extraction</p>
+            </div>
+
+            <div class="step" id="step3">
+                <span>🤖</span>
+                <p>AI Analysis</p>
+            </div>
+
+            <div class="step" id="step4">
+                <span>📑</span>
+                <p>Deloitte Mapping</p>
+            </div>
+
+            <div class="step" id="step5">
+                <span>✅</span>
+                <p>Word Generation</p>
+            </div>
+
+        </div>
+
+        <div class="upload-card">
+
+            <form
+                id="uploadForm"
+                action="/generate"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <label class="drop-zone">
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        name="jd_file"
+                        accept=".pdf,.docx"
+                        required
+                    >
+
+                    <div class="upload-content">
+
+                        <div class="upload-icon">
+                            ☁️
+                        </div>
+
+                        <h2>
+                            Drag & Drop JD
+                        </h2>
+
+                        <p>
+                            PDF or DOCX
+                        </p>
+
+                        <small>
+                            Click to Browse
+                        </small>
+
+                    </div>
+
+                </label>
+
+                <div id="fileName">
+                    No file selected
+                </div>
+
+                <button
+                    type="submit"
+                    class="generate-btn"
+                    id="generateBtn"
+                >
+                    Generate Deloitte JD
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Hidden Initially -->
+
+    <div
+        class="loading-section"
+        id="loadingSection"
+        style="display:none;"
+    >
+
+        
+
+        
+
+    </div>
+
+    <!-- Download Button Hidden -->
+
+    <div
+        id="downloadSection"
+        style="display:none;text-align:center;margin-top:20px;"
+    >
+
+        <a
+            id="downloadBtn"
+            class="download-btn"
+            href="#"
+        >
+            📥 Download Deloitte JD
+        </a>
+
+    </div>
+
+    <div class="footer-card">
+
+        Client JD → AI Analysis → Deloitte JD (.docx)
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+<script>
+
+document.getElementById("uploadForm")
+.addEventListener("submit", function(){
+
+    document.getElementById("loadingSection")
+    .style.display = "block";
+
+    let steps = document.querySelectorAll(".step");
+
+    let i = 0;
+
+    let interval = setInterval(()=>{
+
+        if(i < steps.length){
+
+            steps[i].classList.add("active");
+
+            i++;
+
+        }
+
+        else{
+
+            clearInterval(interval);
+
+        }
+
+    },1200);
+
+});
+
+document.getElementById("fileInput")
+.addEventListener("change",function(){
+
+    if(this.files.length > 0){
+
+        document.getElementById("fileName")
+        .innerText = this.files[0].name;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

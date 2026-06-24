@@ -1,0 +1,309 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#f4f6f8;
+    min-height:100vh;
+    padding:30px;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+}
+
+.header-card{
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:48px;
+    font-weight:800;
+    color:#111;
+}
+
+.logo span{
+    color:#86BC25;
+}
+
+.header-card h2{
+    margin-top:10px;
+    font-size:30px;
+}
+
+.header-card p{
+    color:#666;
+    margin-top:8px;
+}
+
+.greeting-card{
+    margin-top:20px;
+    background:#fff;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+#greeting{
+    color:#111;
+    font-size:24px;
+}
+
+#quote{
+    margin-top:8px;
+    color:#666;
+    font-style:italic;
+}
+
+.main-grid{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:25px;
+}
+
+.process-card,
+.upload-card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.process-card h3,
+.upload-card h3{
+    margin-bottom:20px;
+}
+
+/* PROCESS STATUS */
+
+.step{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background:#f8f9fb;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:12px;
+    border-left:5px solid #dcdcdc;
+    transition:all .5s ease;
+}
+
+.step span{
+    font-size:22px;
+}
+
+.step p{
+    font-weight:500;
+}
+
+.step.active{
+    background:#86BC25;
+    color:#fff;
+    border-left:5px solid #5e8812;
+    transform:translateX(8px);
+    box-shadow:0 8px 20px rgba(134,188,37,.35);
+}
+
+.step.active span{
+    animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* UPLOAD */
+
+.drop-zone{
+    display:block;
+    border:3px dashed #86BC25;
+    border-radius:20px;
+    height:320px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.drop-zone:hover{
+    background:#f9fff0;
+}
+
+.drop-zone input{
+    display:none;
+}
+
+.upload-content{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.upload-icon{
+    font-size:70px;
+}
+
+.upload-content h2{
+    margin-top:15px;
+}
+
+.upload-content p{
+    color:#666;
+    margin-top:5px;
+}
+
+.upload-content small{
+    margin-top:10px;
+    color:#999;
+}
+
+#fileName{
+    margin-top:15px;
+    text-align:center;
+    color:#555;
+    font-weight:500;
+}
+
+/* GENERATE BUTTON */
+
+.generate-btn{
+    width:100%;
+    margin-top:20px;
+    border:none;
+    background:#86BC25;
+    color:white;
+    padding:16px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.generate-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(134,188,37,.3);
+}
+
+.generate-btn:disabled{
+    opacity:.7;
+    cursor:not-allowed;
+}
+
+/* LOADER */
+
+.loading-section{
+    display:none;
+    margin-top:25px;
+    text-align:center;
+}
+
+.loading-section h3{
+    margin-top:15px;
+    color:#111;
+}
+
+.loading-section p{
+    color:#666;
+    margin-top:8px;
+}
+
+.loader{
+    width:70px;
+    height:70px;
+    border:6px solid #ddd;
+    border-top:6px solid #86BC25;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:auto;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* DOWNLOAD BUTTON */
+
+.download-btn{
+    display:inline-block;
+    background:#86BC25;
+    color:white;
+    padding:15px 35px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.download-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(134,188,37,.3);
+}
+
+/* FOOTER */
+
+.footer-card{
+    margin-top:25px;
+    background:#fff;
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+    font-weight:600;
+    color:#666;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+/* GLASS EFFECT */
+
+.header-card,
+.greeting-card,
+.process-card,
+.upload-card,
+.footer-card{
+    backdrop-filter:blur(10px);
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    body{
+        padding:15px;
+    }
+
+    .main-grid{
+        grid-template-columns:1fr;
+    }
+
+    .header-card h2{
+        font-size:24px;
+    }
+
+    .logo{
+        font-size:36px;
+    }
+
+    .drop-zone{
+        height:250px;
+    }
+
+}

@@ -1,0 +1,71 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+edits/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# Environment files containing secrets (API keys, tokens)
+.env
+.env.*
+secrets/
+*.key
+*.pem
+*.pfx
+*.crt
+*.pub
+
+# IDE/editor settings
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Test coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
+
+# Type checking caches
+.pyre/
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Output and uploaded files (may contain sensitive data)
+outputs/
+uploads/
